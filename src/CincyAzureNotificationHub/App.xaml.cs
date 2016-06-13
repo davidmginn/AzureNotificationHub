@@ -1,29 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.Networking.PushNotifications;
-using Microsoft.WindowsAzure.Messaging;
-using Windows.UI.Popups;
-using System.Threading.Tasks;
-using Microsoft.QueryStringDotNET;
-
-using Windows.UI.Notifications;
-using NotificationsExtensions.Toasts; // NotificationsExtensions.Win10
-using Windows.Data.Xml.Dom;
-using CincyAzureNotificationHub.Services;
 
 namespace CincyAzureNotificationHub
 {
@@ -32,8 +12,6 @@ namespace CincyAzureNotificationHub
     /// </summary>
     sealed partial class App : Application
     {
-        PushNotificationChannel channel = null;
-
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -55,18 +33,6 @@ namespace CincyAzureNotificationHub
         /// <param name="e">Details about the launch request and process.</param>
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            await NotificationService.InitNotificationsAsync();
-
-            try
-            {
-                channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-                channel.PushNotificationReceived += this.OnPushNotification;
-            }
-            catch
-            {
-
-            }
-
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -131,72 +97,6 @@ namespace CincyAzureNotificationHub
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
-        }
-
-
-        private void OnPushNotification(PushNotificationChannel sender, PushNotificationReceivedEventArgs e)
-        {
-            var text = e.ToastNotification.Content;
-
-            ToastContent content = new ToastContent()
-            {
-                Launch = "lei",
-
-                Visual = new ToastVisual()
-                {
-                    TitleText = new ToastText()
-                    {
-                        Text = "New message from Lei"
-                    },
-
-                    BodyTextLine1 = new ToastText()
-                    {
-                        Text = "NotificationsExtensions is great!"
-                    },
-
-                    AppLogoOverride = new ToastAppLogo()
-                    {
-                        Crop = ToastImageCrop.Circle,
-                        Source = new ToastImageSource("http://messageme.com/lei/profile.jpg")
-                    }
-                },
-
-                Actions = new ToastActionsCustom()
-                {
-                    Inputs =
-        {
-            new ToastTextBox("tbReply")
-            {
-                PlaceholderContent = "Type a response"
-            }
-        },
-
-                    Buttons =
-        {
-            new ToastButton("reply", "reply")
-            {
-                ActivationType = ToastActivationType.Background,
-                ImageUri = "Assets/QuickReply.png",
-                TextBoxId = "tbReply"
-            }
-        }
-                },
-
-                Audio = new ToastAudio()
-                {
-                    Src = new Uri("ms-winsoundevent:Notification.IM")
-                }
-            };
-
-            XmlDocument doc = content.GetXml();
-
-            // Generate WinRT notification
-            var toast = new ToastNotification(doc);
-
-            // Display toast
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
-
-            e.Cancel = true;
         }
     }
 }

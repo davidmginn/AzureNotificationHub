@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
             QueueClient Client =
                 QueueClient.CreateFromConnectionString(connectionString, "TestQueue");
 
-            Client.Send(new BrokeredMessage("Hello from cincy azure"));
+            Client.Send(new BrokeredMessage(model));
         }
 
         // PUT api/values/5
