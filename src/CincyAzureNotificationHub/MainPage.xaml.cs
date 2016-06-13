@@ -32,6 +32,8 @@ namespace CincyAzureNotificationHub
         public MainPage()
         {
             this.InitializeComponent();
+
+
         }
 
         private async void button_Click(object sender, RoutedEventArgs e)

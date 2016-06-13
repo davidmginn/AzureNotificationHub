@@ -24,7 +24,7 @@ namespace WebJob
             NotificationHubClient hub = NotificationHubClient
                 .CreateClientFromConnectionString("Endpoint=sb://cincyazure.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=HDCgcWXf9CLsdmgvnNzfSqy66ZRLC++E07yzG1BRxkg=", "CincyAzure");
 
-            var toast = @"<toast><visual><binding template=""ToastText01""><text id=""1"">Hello from a .NET App!</text></binding></visual></toast>";
+            var toast = @"<toast><visual><binding template=""ToastText01""><text id=""1"">The item you requested is now in stock and ready for order</text></binding></visual></toast>";
             await hub.SendWindowsNativeNotificationAsync(toast);
         }
     }

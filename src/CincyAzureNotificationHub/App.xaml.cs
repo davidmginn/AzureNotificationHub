@@ -23,6 +23,7 @@ using Microsoft.QueryStringDotNET;
 using Windows.UI.Notifications;
 using NotificationsExtensions.Toasts; // NotificationsExtensions.Win10
 using Windows.Data.Xml.Dom;
+using CincyAzureNotificationHub.Services;
 
 namespace CincyAzureNotificationHub
 {
@@ -54,7 +55,7 @@ namespace CincyAzureNotificationHub
         /// <param name="e">Details about the launch request and process.</param>
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            await InitNotificationsAsync();
+            await NotificationService.InitNotificationsAsync();
 
             try
             {
@@ -132,22 +133,6 @@ namespace CincyAzureNotificationHub
             deferral.Complete();
         }
 
-        private async Task InitNotificationsAsync()
-        {
-            var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
-
-            var hub = new NotificationHub("CincyAzure", "Endpoint=sb://cincyazure.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=w8KPh8QPYeCsteaHiUw85M9FZhRcpEgbq5DELUJeAQw=");
-            var result = await hub.RegisterNativeAsync(channel.Uri);
-
-            // Displays the registration ID so you know it was successful
-            if (result.RegistrationId != null)
-            {
-                var dialog = new MessageDialog("Registration successful: " + result.RegistrationId);
-                dialog.Commands.Add(new UICommand("OK"));
-                await dialog.ShowAsync();
-            }
-
-        }
 
         private void OnPushNotification(PushNotificationChannel sender, PushNotificationReceivedEventArgs e)
         {
