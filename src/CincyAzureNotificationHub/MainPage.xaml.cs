@@ -3,7 +3,9 @@ using CincyAzureNotificationHub.Services;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
+using System;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -162,7 +164,25 @@ namespace CincyAzureNotificationHub
             Data3_Option3.IsChecked = false;
         }
 
-        private async void button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Handles when the submit button is pressed.
+        /// </summary>
+        private async void SubmitButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            SendAzureRequest();
+
+            // Show notification 
+            MessageDialog msg = new MessageDialog("Your report has been sent to Azure and is running. You will recieve a notification when it is complete.", "Report Sent");
+            await msg.ShowAsync();
+
+            // Reset state
+            if (VisualState == VisualStates.Phone_DataEntry)
+            {
+                VisualState = VisualStates.Phone_Selecting;
+            }
+        }
+
+        private async void SendAzureRequest()
         {
             await service.InitNotificationsAsync();
 
