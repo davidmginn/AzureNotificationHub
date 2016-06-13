@@ -7,7 +7,136 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="button" Content="Request Report" HorizontalAlignment="Left" Margin="529,322,0,0" VerticalAlignment="Top" Width="218" Click="button_Click"/>
+    <Grid x:Name="RootGrid" Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="States">
+                <VisualState x:Name="DesktopState">
+                    <VisualState.Setters>
+                        <Setter Target="DataColumn.Width" Value="*"/>
+                        <Setter Target="ReportColumn.Width" Value="360"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="PhoneState_Selecting">
+                    <VisualState.Setters>
+                        <Setter Target="DataColumn.Width" Value="0"/>
+                        <Setter Target="ReportColumn.Width" Value="*"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="PhoneState_DataEntry">
+                    <VisualState.Setters>
+                        <Setter Target="DataColumn.Width" Value="*"/>
+                        <Setter Target="ReportColumn.Width" Value="0"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid x:Name="TitleGrid"
+              Height="60"
+              Background="#022835">
+            <TextBlock x:Name="TitleText"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="Demo - Report Processing"
+                       FontSize="25"/>
+        </Grid>
+
+        <Grid x:Name="ContentGrid"
+              Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="ReportColumn" Width="*"/>
+                <ColumnDefinition x:Name="DataColumn" Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer>
+                <StackPanel>
+                    <Grid x:Name="Button1" Background="Gray"
+                          Margin="0,0,0,1" Tapped="Button_Tapped">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Height="60" Width="60" Margin="10,10,0,10">
+                                <Image Source="/Assets/doc.png" Stretch="UniformToFill"/>
+                            </Border>
+                            <TextBlock Text="Test Report 1" 
+                                           Margin="20,14,0,0" 
+                                           FontSize="23"
+                                           Height="50" 
+                                           TextTrimming="WordEllipsis" 
+                                           TextWrapping="Wrap" 
+                                           HorizontalAlignment="Left"
+                                           Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Button2" Background="Gray" Tapped="Button_Tapped"
+                          Margin="0,0,0,1">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Height="60" Width="60" Margin="10,10,0,10">
+                                <Image Source="/Assets/doc.png" Stretch="UniformToFill"/>
+                            </Border>
+                            <TextBlock Text="Test Report 2" 
+                                           Margin="20,14,0,0" 
+                                           FontSize="23"
+                                           Height="50" 
+                                           TextTrimming="WordEllipsis" 
+                                           TextWrapping="Wrap" 
+                                           HorizontalAlignment="Left"
+                                           Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Button3" Background="Gray" Tapped="Button_Tapped"
+                          Margin="0,0,0,1">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Height="60" Width="60" Margin="10,10,0,10">
+                                <Image Source="/Assets/doc.png" Stretch="UniformToFill"/>
+                            </Border>
+                            <TextBlock Text="Test Report 3" 
+                                           Margin="20,14,0,0" 
+                                           FontSize="23"
+                                           Height="50" 
+                                           TextTrimming="WordEllipsis" 
+                                           TextWrapping="Wrap" 
+                                           HorizontalAlignment="Left"
+                                           Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Button4" Background="Gray" Tapped="Button_Tapped"
+                          Margin="0,0,0,1">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Height="60" Width="60" Margin="10,10,0,10">
+                                <Image Source="/Assets/doc.png" Stretch="UniformToFill"/>
+                            </Border>
+                            <TextBlock Text="Test Report 4" 
+                                           Margin="20,14,0,0" 
+                                           FontSize="23"
+                                           Height="50" 
+                                           TextTrimming="WordEllipsis" 
+                                           TextWrapping="Wrap" 
+                                           HorizontalAlignment="Left"
+                                           Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Button5" Background="Gray" Tapped="Button_Tapped"
+                          Margin="0,0,0,1">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Height="60" Width="60" Margin="10,10,0,10">
+                                <Image Source="/Assets/doc.png" Stretch="UniformToFill"/>
+                            </Border>
+                            <TextBlock Text="Test Report 5" 
+                                           Margin="20,14,0,0" 
+                                           FontSize="23"
+                                           Height="50" 
+                                           TextTrimming="WordEllipsis" 
+                                           TextWrapping="Wrap" 
+                                           HorizontalAlignment="Left"
+                                           Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
+
 </Page>
