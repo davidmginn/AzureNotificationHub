@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using System;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -72,6 +73,22 @@ namespace CincyAzureNotificationHub
             // Register back button input
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
+
+            // Hide the status bar so that the black bar at the top does not appear
+            HideStatusBar();
+        }
+
+        /// <summary>
+        /// Hides the status bar at the top of the page to add more room
+        /// </summary>
+        private async void HideStatusBar()
+        {
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var statusbar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                await statusbar.HideAsync();
+            }
+
         }
 
         /// <summary>
