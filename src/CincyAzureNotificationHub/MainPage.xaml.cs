@@ -62,7 +62,57 @@ namespace CincyAzureNotificationHub
             this.InitializeComponent();
             this.service = new NotificationService();
 
+            // Set up visual states to handle window resizing for different devices
+            SetUpVisualStates();
+        }
 
+        /// <summary>
+        /// Sets inital visualState and handles window size change events
+        /// </summary>
+        private void SetUpVisualStates()
+        {
+            // Set inital visual state
+            if (Window.Current.Bounds.Width > 720)
+            {
+                VisualState = VisualStates.Desktop_Selecting;
+            }
+            else
+            {
+                VisualState = VisualStates.Phone_Selecting;
+            }
+
+            // Handle window size changes
+            Window.Current.SizeChanged += (s1, e1) =>
+            {
+                if (Window.Current.Bounds.Width >= 720)
+                {
+                    // Window should be in desktop visual state
+
+                    // Convert from phone state if needed 
+                    if (VisualState == VisualStates.Phone_DataEntry)
+                    {
+                        VisualState = VisualStates.Desktop_DataEntry;
+                    }
+                    else if (VisualState == VisualStates.Phone_Selecting)
+                    {
+                        VisualState = VisualStates.Desktop_Selecting;
+                    }
+                }
+                else
+                {
+                    // Window should be in a "phone" visual state
+
+                    // Convert from desktop state to correct view if needed 
+                    if (VisualState == VisualStates.Desktop_DataEntry)
+                    {
+                        VisualState = VisualStates.Phone_DataEntry;
+                    }
+                    else if (VisualState == VisualStates.Desktop_Selecting)
+                    {
+                        VisualState = VisualStates.Phone_Selecting;
+                    }
+                }
+            };
         }
 
         private async void button_Click(object sender, RoutedEventArgs e)
