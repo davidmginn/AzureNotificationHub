@@ -3,6 +3,7 @@ using CincyAzureNotificationHub.Services;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -64,6 +65,23 @@ namespace CincyAzureNotificationHub
 
             // Set up visual states to handle window resizing for different devices
             SetUpVisualStates();
+
+            // Register back button input
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
+        }
+
+        /// <summary>
+        /// Handles back button VisualState navigation
+        /// </summary>
+        private void MainPage_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            // Navigate "back" if you are a phone user
+            if (VisualState == VisualStates.Phone_DataEntry)
+            {
+                VisualState = VisualStates.Phone_Selecting;
+                e.Handled = true;
+            }
         }
 
         /// <summary>
