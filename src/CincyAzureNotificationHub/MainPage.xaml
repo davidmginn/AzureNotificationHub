@@ -136,6 +136,78 @@
                     </Grid>
                 </StackPanel>
             </ScrollViewer>
+            <ScrollViewer x:Name="DataEntryPanel"
+                          Visibility="Collapsed"
+                          Grid.Column="1">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock x:Name="DocumentTitle"
+                               FontSize="25"
+                               Foreground="White"
+                               Text=""
+                               HorizontalAlignment="Left"
+                               Margin="0,10,0,30"
+                               FontWeight="ExtraBold"/>
+
+                    <TextBlock FontSize="23"
+                               Foreground="White"
+                               Text="First Data Field:"
+                               HorizontalAlignment="Left"
+                               Margin="0,10,0,5"/>
+                    <TextBox x:Name="Data1"
+                             Width="360"
+                             Background="White" 
+                             BorderBrush="#022835"
+                             Margin="0,0,0,25"/>
+                    <TextBlock FontSize="23"
+                               Foreground="White"
+                               Text="Second Data Field:"
+                               HorizontalAlignment="Left"
+                               Margin="0,10,0,5"/>
+                    <TextBox x:Name="Data2"
+                             Width="360"
+                             Background="White" 
+                             BorderBrush="#022835"
+                             Margin="0,0,0,25"/>
+                    <TextBlock FontSize="23"
+                               Foreground="White"
+                               Text="Third Data Field:"
+                               HorizontalAlignment="Left"
+                               Margin="0,10,0,5"/>
+                    <StackPanel>
+                        <RadioButton x:Name="Data3_Option1"
+                                     Content="Option 1" 
+                                     Foreground="White" 
+                                     BorderBrush="White"
+                                     Background="#022835"
+                                     Width="360"/>
+                        <RadioButton x:Name="Data3_Option2"
+                                     Content="Option 2" 
+                                     Foreground="White" 
+                                     BorderBrush="White"
+                                     Background="#022835"
+                                     Width="360"/>
+                        <RadioButton x:Name="Data3_Option3"
+                                     Content="Option 3" 
+                                     Foreground="White" 
+                                     BorderBrush="White"
+                                     Background="#022835"
+                                     Width="360"/>
+                    </StackPanel>
+
+                    <Button x:Name="SubmitButton"
+                            Content="Submit"
+                            Width="300"
+                            HorizontalAlignment="Center"
+                            Margin="0,35,0,0"
+                            Foreground="White"
+                            Background="#022835"
+                            BorderBrush="White"
+                            Height="50"
+                            FontSize="25"
+                            Tapped="SubmitButton_Tapped"/>
+                </StackPanel>
+            </ScrollViewer>
+
         </Grid>
     </Grid>
 
