@@ -14,7 +14,47 @@ namespace CincyAzureNotificationHub
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
-    { 
+    {
+        public enum VisualStates
+        {
+            Desktop_Selecting, Desktop_DataEntry, Phone_Selecting, Phone_DataEntry
+        }
+
+        private VisualStates _VisualState;
+        public VisualStates VisualState
+        {
+            get
+            {
+                return _VisualState;
+            }
+            set
+            {
+                _VisualState = value;
+                switch (value)
+                {
+                    case VisualStates.Desktop_Selecting:
+                        VisualStateManager.GoToState(this, "DesktopState", false);
+                        DataEntryPanel.Visibility = Visibility.Collapsed;
+                        break;
+                    case VisualStates.Desktop_DataEntry:
+                        VisualStateManager.GoToState(this, "DesktopState", false);
+                        DataEntryPanel.Visibility = Visibility.Visible;
+                        break;
+                    case VisualStates.Phone_Selecting:
+                        DataEntryPanel.Visibility = Visibility.Collapsed;
+                        VisualStateManager.GoToState(this, "PhoneState_Selecting", false);
+                        break;
+                    case VisualStates.Phone_DataEntry:
+                        VisualStateManager.GoToState(this, "PhoneState_DataEntry", false);
+                        DataEntryPanel.Visibility = Visibility.Visible;
+                        break;
+                    default:
+                        VisualStateManager.GoToState(this, "DesktopState", false);
+                        break;
+                }
+            }
+        }
+
         NotificationService service;
 
         public MainPage()
