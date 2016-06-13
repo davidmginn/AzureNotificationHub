@@ -6,6 +6,7 @@ using System.Text;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -131,6 +132,34 @@ namespace CincyAzureNotificationHub
                     }
                 }
             };
+        }
+
+        /// <summary>
+        /// Handles when a report button is pressed
+        /// </summary>
+        private void Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            // Set visual state
+            if (VisualState == VisualStates.Phone_Selecting)
+            {
+                VisualState = VisualStates.Phone_DataEntry;
+            }
+            else if (VisualState == VisualStates.Desktop_Selecting)
+            {
+                VisualState = VisualStates.Desktop_DataEntry;
+            }
+
+            // Assign document title
+            string name = ((Grid)sender).Name;
+            name = name.Remove(0, 6);
+            DocumentTitle.Text = "Test Report " + name;
+
+            // Clear old entries
+            Data1.Text = "";
+            Data2.Text = "";
+            Data3_Option1.IsChecked = false;
+            Data3_Option2.IsChecked = false;
+            Data3_Option3.IsChecked = false;
         }
 
         private async void button_Click(object sender, RoutedEventArgs e)
