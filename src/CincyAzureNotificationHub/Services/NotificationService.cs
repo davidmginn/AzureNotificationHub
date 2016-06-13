@@ -22,7 +22,7 @@ namespace CincyAzureNotificationHub.Services
             var hub = new NotificationHub("CincyAzure", "Endpoint=sb://cincyazure.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=w8KPh8QPYeCsteaHiUw85M9FZhRcpEgbq5DELUJeAQw=");
             var result = await hub.RegisterNativeAsync(channel.Uri, new List<string>()
             {
-                "Kentucky",
+                "Cincinnati",
                 "Azure"
             });
 
