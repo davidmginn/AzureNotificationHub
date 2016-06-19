@@ -2,7 +2,7 @@
 
 ## Windows Universal App
 
-Our application for this scenario
+Our application for this scenario.
 
 ## Web API
 
@@ -47,7 +47,7 @@ Sends a push notification to a complex group using a tag expression
 (location_cincinnati || location_northern_kentucky) && azure
 ```
 
-## Simple Notification App
+## [Simple Notification App](WindowsUniversalApp.md)
 
 * Register a new Windows Universal App
 * Enable Notifications
