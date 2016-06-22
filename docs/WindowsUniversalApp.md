@@ -17,7 +17,7 @@
 
 ![Alt text](img/services.PNG)
 
-* Click "live services"
+* Click "Live Services site"
 
 ![Alt text](img/liveServices.PNG)
 
@@ -35,7 +35,7 @@
 
 ![Alt text](img/newNotificationHubProperties.PNG)
 
-* Once the notification hub has been provisioned, select it from your Azure Portal start page.  Click to view the properties, and set the App Secret and Package SID
+* Once the notification hub has been provisioned, select it from your Azure Portal start page.  Click "Notification Services" -> "Windows (WNS)" and set the Package SID and Security Key (App Secret) that were noted above
 
 ![Alt text](img/newNotificationHubSettings.PNG)
 
@@ -43,7 +43,7 @@
 
 ![Alt text](img/newProject.PNG)
 
-* Right click on the project, select "Store" and then "Associate App".  Proceed through the dialogs to associate the project with the Windows Store App we created earlier
+* Right click on the project, select "Store" and then "Associate App with the Store".  Proceed through the dialogs to associate the project with the Windows Store App we created earlier
 
 ![Alt text](img/associateAppWithStore.PNG)
 
