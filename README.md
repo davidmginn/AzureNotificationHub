@@ -19,7 +19,7 @@ The sample application is a reporting app that allows the user to select from a 
 ## Web API
 
 Mobile appliations need a way to consume data.  Typically, this data needs to come from a web service, as only having locally available data isn't going to make an application very valuable.  ASP.Net Web API 
-is a great platform for building RESTful web services that can easily be consumed by mobile applications.  In our mobile app, we will have a POST method defined that take the nessary parameters to process
+is a great platform for building RESTful web services that can easily be consumed by mobile applications.  In our mobile app, we will have a POST method defined that take the necessary parameters to process
 a report and send a message containing the parameters to an Azure Service Bus Queue.
 
 ## Service Bus
