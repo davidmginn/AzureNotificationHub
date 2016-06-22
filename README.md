@@ -1,5 +1,9 @@
 # Leveraging Azure to build notification based apps
 
+## Building a simple notification app in 15 minutes!
+
+[Simple Notification App](docs/WindowsUniversalApp.md)
+
 ## Windows Universal App
 
 In order to demonstrate push notifications, we need an application capable of subscribing to and receiving push notifications.  Windows Universal Applications are designed to be run on any Windows 10 device and 
@@ -59,15 +63,6 @@ Sends a push notification to a complex group using a tag expression
 ```
 (location_cincinnati || location_northern_kentucky) && azure
 ```
-
-## [Simple Notification App](WindowsUniversalApp.md)
-
-* Register a new Windows Universal App
-* Enable Notifications
-* Provision an azure notification hub
-* Write the codez
-* Debug App
-* Send push notification from notification hub
 
 
 
