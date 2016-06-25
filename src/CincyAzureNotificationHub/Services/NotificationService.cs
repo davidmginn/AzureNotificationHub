@@ -23,7 +23,8 @@ namespace CincyAzureNotificationHub.Services
             var result = await hub.RegisterNativeAsync(channel.Uri, new List<string>()
             {
                 "Cincinnati",
-                "Azure"
+                "Azure",
+                "user_davidmginn"
             });
 
             return result.RegistrationId;
@@ -46,7 +47,7 @@ namespace CincyAzureNotificationHub.Services
 
                     BodyTextLine1 = new ToastText()
                     {
-                        Text = "NotificationsExtensions is great!"  //Lets get some better body text here based on what we decide to do
+                        Text = "NotificationsExtensions are great!"  //Lets get some better body text here based on what we decide to do
                     },
 
                     AppLogoOverride = new ToastAppLogo()

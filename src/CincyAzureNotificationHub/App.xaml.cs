@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CincyAzureNotificationHub.Services;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -12,6 +13,9 @@ namespace CincyAzureNotificationHub
     /// </summary>
     sealed partial class App : Application
     {
+
+        NotificationService service;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -33,6 +37,10 @@ namespace CincyAzureNotificationHub
         /// <param name="e">Details about the launch request and process.</param>
         protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
+
+            service = new NotificationService();
+            await service.InitNotificationsAsync();
+
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)

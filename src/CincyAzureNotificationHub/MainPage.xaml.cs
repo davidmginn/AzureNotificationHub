@@ -60,12 +60,9 @@ namespace CincyAzureNotificationHub
             }
         }
 
-        NotificationService service;
-
         public MainPage()
         {
             this.InitializeComponent();
-            this.service = new NotificationService();
 
             // Set up visual states to handle window resizing for different devices
             SetUpVisualStates();
@@ -174,11 +171,11 @@ namespace CincyAzureNotificationHub
             DocumentTitle.Text = "Test Report " + name;
 
             // Clear old entries
-            Data1.Text = "";
-            Data2.Text = "";
-            Data3_Option1.IsChecked = false;
-            Data3_Option2.IsChecked = false;
-            Data3_Option3.IsChecked = false;
+            CustomerName.Text = "";
+            ProductName.Text = "";
+            MonthToDate.IsChecked = false;
+            QuarterToDate.IsChecked = false;
+            YearToDate.IsChecked = false;
         }
 
         /// <summary>
@@ -201,16 +198,31 @@ namespace CincyAzureNotificationHub
 
         private async void SendAzureRequest()
         {
-            await service.InitNotificationsAsync();
+            var report = new CustomerProductReport()
+            {
+                CustomerName = CustomerName.Text,
+                ProductName = ProductName.Text,
+                RequestedBy = "user_davidmginn"
+            };
+
+            if (YearToDate.IsChecked.Value)
+            {
+                report.TimePeriod = "YearToDate";
+            }
+            else if (QuarterToDate.IsChecked.Value)
+            {
+                report.TimePeriod = "QuarterToDate";
+            }
+            else if (MonthToDate.IsChecked.Value)
+            {
+                report.TimePeriod = "MonthToDate";
+            }
 
             using (var client = new HttpClient())
             {
-                var postData = JsonConvert.SerializeObject(new SimpleModel()
-                {
-                    Title = "Hello World"
-                });
+                var postData = JsonConvert.SerializeObject(report);
 
-                await client.PostAsync("http://localhost:61931/api/values/", new StringContent(postData, Encoding.UTF8, "application/json"));
+                await client.PostAsync($"{Config.API_BASE_URI}/CustomerProductReport/", new StringContent(postData, Encoding.UTF8, "application/json"));
             }
         }
     }

@@ -18,7 +18,7 @@
                 <VisualState x:Name="DesktopState">
                     <VisualState.Setters>
                         <Setter Target="DataColumn.Width" Value="*"/>
-                        <Setter Target="ReportColumn.Width" Value="360"/>
+                        <Setter Target="ReportColumn.Width" Value="400"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="PhoneState_Selecting">
@@ -43,7 +43,7 @@
                        Foreground="White"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Text="Demo - Report Processing"
+                       Text="Select a Report for Processing"
                        FontSize="25"/>
         </Grid>
 
@@ -61,7 +61,7 @@
                             <Border Height="60" Width="60" Margin="10,10,0,10">
                                 <Image Source="/Assets/doc.png" Stretch="UniformToFill"/>
                             </Border>
-                            <TextBlock Text="Test Report 1" 
+                            <TextBlock Text="Customer / Product Report" 
                                            Margin="20,14,0,0" 
                                            FontSize="23"
                                            Height="50" 
@@ -151,46 +151,46 @@
 
                     <TextBlock FontSize="23"
                                Foreground="White"
-                               Text="First Data Field:"
+                               Text="Customer Name:"
                                HorizontalAlignment="Left"
                                Margin="10,10,10,5"/>
-                    <TextBox x:Name="Data1"
+                    <TextBox x:Name="CustomerName"
                              Width="340"
                              Background="White" 
                              BorderBrush="#022835"
                              Margin="10,0,10,25"/>
                     <TextBlock FontSize="23"
                                Foreground="White"
-                               Text="Second Data Field:"
+                               Text="Product Name:"
                                HorizontalAlignment="Left"
                                Margin="10,10,10,5"/>
-                    <TextBox x:Name="Data2"
+                    <TextBox x:Name="ProductName"
                              Width="340"
                              Background="White" 
                              BorderBrush="#022835"
                              Margin="10,0,10,25"/>
                     <TextBlock FontSize="23"
                                Foreground="White"
-                               Text="Third Data Field:"
+                               Text="Date Range:"
                                HorizontalAlignment="Left"
                                Margin="10,10,10,5"/>
                     <StackPanel>
-                        <RadioButton x:Name="Data3_Option1"
-                                     Content="Option 1" 
+                        <RadioButton x:Name="MonthToDate"
+                                     Content="Month to Date" 
                                      Foreground="White" 
                                      BorderBrush="White"
                                      Background="#022835"
                                      Width="340"
                                      Margin="10,0"/>
-                        <RadioButton x:Name="Data3_Option2"
-                                     Content="Option 2" 
+                        <RadioButton x:Name="QuarterToDate"
+                                     Content="Quarter to Date" 
                                      Foreground="White" 
                                      BorderBrush="White"
                                      Background="#022835"
                                      Width="340"
                                      Margin="10,0"/>
-                        <RadioButton x:Name="Data3_Option3"
-                                     Content="Option 3" 
+                        <RadioButton x:Name="YearToDate"
+                                     Content="Year to Date" 
                                      Foreground="White" 
                                      BorderBrush="White"
                                      Background="#022835"
