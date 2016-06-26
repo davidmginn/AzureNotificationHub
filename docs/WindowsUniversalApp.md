@@ -5,7 +5,7 @@
 
 ![Alt text](img/dashboard.PNG)
 
-* Click new app
+* Click "Create new app"
 
 ![Alt text](img/newapp.PNG)
 
