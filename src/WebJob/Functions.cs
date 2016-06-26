@@ -25,6 +25,7 @@ namespace WebJob
             Console.WriteLine(model.TimePeriod);
             Console.WriteLine(model.RequestedBy);
 
+            Console.WriteLine("Aggregating data for report...");
 
             Thread.Sleep(10000);
 
