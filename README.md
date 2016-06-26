@@ -42,23 +42,19 @@ Abstraction over top of individual platform push notification services.  Allows 
 * Kindle
 * Google Chrome
 
-### Device Registrations
-
-There are two ways to registrer divices with Azure Notification Hub, Registrations and Installations.  
-
-#### Registrations
-
-### X-Plat Notifications
+### X-Plat Notifications using templates
 
 Each Platform Notification Service has its own specific format that messages are expected in. 
 
 ```
 Apple Push Notificaiton Format
+
 {"aps": {"alert" : "Hello!" }}
 ```
 
 ```
 Windows Push Notification Formation
+
 <toast>
   <visual>
     <binding template=\"ToastText01\">
@@ -66,6 +62,38 @@ Windows Push Notification Formation
     </binding>
   </visual>
 </toast>
+```
+
+Typically, we'd need to send the push notificaition in the format expected by the specific device.  You can use a template registration however in order for the device to register an expected format with the notification
+hub, which then allows us to send a platform independent notification.
+
+```
+iOS Template
+
+{"aps": {"alert": "$(message)"}}
+```
+
+```
+Windows Template
+
+<toast>
+    <visual>
+        <binding template=\"ToastText01\">
+            <text id=\"1\">$(message)</text>
+        </binding>
+    </visual>
+</toast>
+```
+
+From here, sending a cross platform notification from .NET is as easy as sending a list of key/value pairs containing the variables that satisfy the registered templates
+
+```
+await hub.SendTemplateNotificationAsync(new Dictionary<string, string>()
+    {
+        {
+            "message", "The report you requested has been processed and is now available for viewing!"
+        }
+    });
 ```
 
 ### Types of Notifications
