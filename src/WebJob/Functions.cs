@@ -40,8 +40,13 @@ namespace WebJob
             NotificationHubClient hub = NotificationHubClient
                 .CreateClientFromConnectionString(ConfigurationManager.AppSettings["NotificationHubConnectionString"], ConfigurationManager.AppSettings["NotificationHubPath"]);
 
-            var toast = @"<toast><visual><binding template=""ToastText01""><text id=""1"">The report you requested has been processed and is now available for viewing!</text></binding></visual></toast>";
-            await hub.SendWindowsNativeNotificationAsync(toast, model.RequestedBy);
+            var outcome = await hub.SendTemplateNotificationAsync(new Dictionary<string, string>()
+            {
+                {
+                    "message", "The report you requested has been processed and is now available for viewing!"
+                }
+            }, 
+            model.RequestedBy);
         }
     }
 }

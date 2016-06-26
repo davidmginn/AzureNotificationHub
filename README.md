@@ -42,6 +42,32 @@ Abstraction over top of individual platform push notification services.  Allows 
 * Kindle
 * Google Chrome
 
+### Device Registrations
+
+There are two ways to registrer divices with Azure Notification Hub, Registrations and Installations.  
+
+#### Registrations
+
+### X-Plat Notifications
+
+Each Platform Notification Service has its own specific format that messages are expected in. 
+
+```
+Apple Push Notificaiton Format
+{"aps": {"alert" : "Hello!" }}
+```
+
+```
+Windows Push Notification Formation
+<toast>
+  <visual>
+    <binding template=\"ToastText01\">
+      <text id=\"1\">Hello!</text>
+    </binding>
+  </visual>
+</toast>
+```
+
 ### Types of Notifications
 
 #### Broadcast
@@ -50,7 +76,7 @@ Sends a push notification to all subscribed devices
 
 #### Unicast/Multicast
 
-Sends to a specific user/group of users.  This is done by using a sigle tag within the expressing
+Sends to a specific user/group of users.  This is done by using a single tag within the expression
 
 ```
 user_davidmginn

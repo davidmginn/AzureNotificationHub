@@ -21,12 +21,15 @@ namespace CincyAzureNotificationHub.Services
 
             var hub = new NotificationHub(Config.NOTIFICATION_HUB_PATH, Config.NOTIFICATION_HUB_CONNECTION_STRING);
 
-            var result = await hub.RegisterNativeAsync(channel.Uri, new List<string>()
-            {
-                "Cincinnati",
-                "Azure",
-                "user_davidmginn"
-            });
+            var template = @"<toast><visual><binding template=""CustomerProductReportNotification""><text id=""1"">$(message)</text></binding></visual></toast>";
+
+            var result = await hub.RegisterTemplateAsync(channel.Uri, template, "CustomerProductReportNotification",
+                new List<string>()
+                {
+                    "Cincinnati",
+                    "Azure",
+                    "user_davidmginn"
+                });
 
             return result.RegistrationId;
         }
@@ -48,7 +51,7 @@ namespace CincyAzureNotificationHub.Services
 
                     BodyTextLine1 = new ToastText()
                     {
-                        Text = text.InnerText 
+                        Text = text.InnerText
                     },
 
                     AppLogoOverride = new ToastAppLogo()
