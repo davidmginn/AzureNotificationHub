@@ -9,6 +9,8 @@ using Microsoft.Azure.NotificationHubs;
 using WebAPI.Models;
 using Newtonsoft.Json;
 using Models;
+using System.Threading;
+using System.Configuration;
 
 namespace WebJob
 {
@@ -18,15 +20,25 @@ namespace WebJob
         // on an Azure Queue called queue.
         public static void ProcessQueueMessage([ServiceBusTrigger("CustomerProductReport")] CustomerProductReport model, TextWriter log)
         {
-            log.WriteLine(model);
+            Console.WriteLine(model.CustomerName);
+            Console.WriteLine(model.ProductName);
+            Console.WriteLine(model.TimePeriod);
+            Console.WriteLine(model.RequestedBy);
+
+
+            Thread.Sleep(10000);
+
+            Console.WriteLine("Sending Notification...");
 
             SendNotificationAsync(model).Wait();
+
+            Console.WriteLine("Notification Sent!");
         }
 
         static async Task SendNotificationAsync(CustomerProductReport model)
         {
             NotificationHubClient hub = NotificationHubClient
-                .CreateClientFromConnectionString("Endpoint=sb://cincyazure.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=HDCgcWXf9CLsdmgvnNzfSqy66ZRLC++E07yzG1BRxkg=", "CincyAzure");
+                .CreateClientFromConnectionString(ConfigurationManager.AppSettings["NotificationHubConnectionString"], ConfigurationManager.AppSettings["NotificationHubPath"]);
 
             var toast = @"<toast><visual><binding template=""ToastText01""><text id=""1"">The report you requested has been processed and is now available for viewing!</text></binding></visual></toast>";
             await hub.SendWindowsNativeNotificationAsync(toast, model.RequestedBy);

@@ -186,7 +186,7 @@ namespace CincyAzureNotificationHub
             SendAzureRequest();
 
             // Show notification 
-            MessageDialog msg = new MessageDialog("Your report has been sent to Azure and is running. You will recieve a notification when it is complete.", "Report Sent");
+            MessageDialog msg = new MessageDialog("Your report has been submitted for processing. You will recieve a notification when it is complete.", "Report Request Submitted");
             await msg.ShowAsync();
 
             // Reset state

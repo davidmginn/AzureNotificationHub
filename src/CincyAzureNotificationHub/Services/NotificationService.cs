@@ -19,7 +19,8 @@ namespace CincyAzureNotificationHub.Services
 
             channel.PushNotificationReceived += this.OnPushNotification;
 
-            var hub = new NotificationHub("CincyAzure", "Endpoint=sb://cincyazure.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=w8KPh8QPYeCsteaHiUw85M9FZhRcpEgbq5DELUJeAQw=");
+            var hub = new NotificationHub(Config.NOTIFICATION_HUB_PATH, Config.NOTIFICATION_HUB_CONNECTION_STRING);
+
             var result = await hub.RegisterNativeAsync(channel.Uri, new List<string>()
             {
                 "Cincinnati",
@@ -42,12 +43,12 @@ namespace CincyAzureNotificationHub.Services
                 {
                     TitleText = new ToastText()
                     {
-                        Text = text.InnerText
+                        Text = "Report Ready!"
                     },
 
                     BodyTextLine1 = new ToastText()
                     {
-                        Text = "NotificationsExtensions are great!"  //Lets get some better body text here based on what we decide to do
+                        Text = text.InnerText 
                     },
 
                     AppLogoOverride = new ToastAppLogo()
