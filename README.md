@@ -34,7 +34,7 @@ to the user that requested the report.
 
 ## Azure Notification Hub
 
-Abstraction over top of individual platform push notification services.  Allows you to easily send push notifications to devices on most major platforms without writing platform specific code.
+Azure Notification Hub is an abstraction over top of individual platform push notification services that allows you to easily send push notifications to devices on most major platforms without writing platform specific code.
 
 * iOS
 * Android
